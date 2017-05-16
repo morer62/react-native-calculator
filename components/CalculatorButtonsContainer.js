@@ -4,15 +4,16 @@ import CalculatorButton from './CalculatorButton';
 
 class CalculatorButtonsContainer extends React.Component {
   render() {
-    const { handleButtonPress } = this.props;
+    const { handleOperationPress, handleButtonPress, handleEqualPress } = this.props;
+    const operations = ['+', '-', '×', '÷'];
+    const operationButtons = operations.map((op) => {
+      return <CalculatorButton operator={op} key={op} handleButtonPress={handleOperationPress} />;
+    });
 
     return (
       <View style={styles.container}>
         <View style={styles.row}>
-          <CalculatorButton operator={'+'} handleButtonPress={handleButtonPress} />
-          <CalculatorButton operator={'−'} handleButtonPress={handleButtonPress} />
-          <CalculatorButton operator={'×'} handleButtonPress={handleButtonPress} />
-          <CalculatorButton operator={'÷'} handleButtonPress={handleButtonPress} />
+          {operationButtons}
         </View>
 
         <View style={styles.row}>
@@ -36,7 +37,7 @@ class CalculatorButtonsContainer extends React.Component {
         <View style={styles.row}>
           <CalculatorButton operator={'0'} handleButtonPress={handleButtonPress} />
           <CalculatorButton operator={'.'} handleButtonPress={handleButtonPress} />
-          <CalculatorButton operator={'='} handleButtonPress={handleButtonPress} />
+          <CalculatorButton operator={'='} handleButtonPress={handleEqualPress} />
         </View>
       </View>
     );

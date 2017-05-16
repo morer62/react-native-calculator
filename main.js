@@ -8,30 +8,96 @@ class App extends React.Component {
   constructor() {
     super();
 
+    this.mathOperations = {
+      '+': (x, y) => x + y,
+      '-': (x, y) => x - y,
+      '×': (x, y) => x * y,
+      '÷': {
+        operation: (x, y) => x / y,
+        validator: (x, y) => (y === 0) && 'Error: Zero div',
+      },
+    };
+
     this.state = {
       result: 0,
+      operands: {
+        first: null,
+        second: null,
+      },
+      computed: false,
+      operation: null,
     };
+
+    this.handleButtonPress = this.handleButtonPress.bind(this);
+    this.handleOperationPress = this.handleOperationPress.bind(this);
+    this.handleEqualPress = this.handleEqualPress.bind(this);
+    this.refresh = this.refresh.bind(this);
   }
 
-  getResult() {
-    // This function should get the first input, the operator and
-    // the second input and calculate the result.
+  handleButtonPress(button) {
+    let { operands, operation } = this.state;
+    if (this.state.computed) {
+      operands = { first: null, second: null };
+      operation = null;
+    }
+
+    const operandOrder = (this.state.operation === null || this.state.computed) ? 'first' : 'second';
+
+    const currentOperand = operands[operandOrder];
+    const newValue = (currentOperand === null) ? button : currentOperand + button;
+    operands[operandOrder] = newValue;
+
+    this.setState({
+      operands,
+      operation,
+      computed: false,
+    });
+  }
+
+  handleOperationPress(operation) {
+    if (this.state.operation === null) {
+      this.setState({ operation });
+    }
+  }
+
+  getResult(first, second, operation) {
+    let mathOperation = this.mathOperations[operation];
+    if (typeof mathOperation !== 'function') {
+      const validatorError = mathOperation.validator(first, second);
+      if (validatorError) {
+        return validatorError;
+      }
+      mathOperation = mathOperation.operation;
+    }
+    const result = mathOperation(first, second);
+    return (Math.round(result) !== result ? result.toFixed(2) : result);
   }
 
   refresh() {
-    // This function should get all the state to its initial values.
+    this.setState({
+      result: 0,
+      operands: {
+        first: null,
+        second: null,
+      },
+      computed: false,
+      operation: null,
+    });
   }
 
-
-  handleButtonPress(button) {
-    // This function should check which 'button' was pressed
-    // and update state values
-    // TIP: before performing any changes check the state
-    // before clicking that button.
+  handleEqualPress() {
+    const { operands, operation } = this.state;
+    const { first, second } = operands;
+    const allValues = [first, second, operation].every(v => v !== null);
+    if (allValues) {
+      const result = this.getResult(parseFloat(first, 10),
+                                    parseFloat(second, 10), operation);
+      this.setState({ result, computed: true });
+    }
   }
 
   render() {
-    const { result } = this.state;
+    const { result, operands, operation } = this.state;
 
     return (
       <LinearGradient
@@ -41,11 +107,16 @@ class App extends React.Component {
 
         <CalculatorResponse
           result={result}
+          firstOperand={operands.first}
+          secondOperand={operands.second}
+          operation={operation}
           refresh={this.refresh}
         />
 
         <CalculatorButtonsContainer
           handleButtonPress={this.handleButtonPress}
+          handleOperationPress={this.handleOperationPress}
+          handleEqualPress={this.handleEqualPress}
         />
 
         <StatusBar barStyle="light-content" />
