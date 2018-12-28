@@ -2,17 +2,17 @@
   "name": "react-native-calculator",
   "version": "0.0.0",
   "description": "React Native Calculator",
-  "author": null,
+  "main": "node_modules/expo/AppEntry.js",
   "private": true,
-  "main": "main.js",
-  "dependencies": {
-    "expo": "16.0.0",
-    "react": "16.0.0-alpha.6",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-16.0.0.tar.gz"
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "eject": "expo eject"
   },
-  "devDependencies": {
-    "eslint": "^3.15.0",
-    "eslint-config-rmotr": "^0.0.8",
-    "eslint-plugin-react": "^6.10.0"
+  "dependencies": {
+    "expo": "^30.0.1",
+    "react": "16.3.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz"
   }
 }

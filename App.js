@@ -1,5 +1,5 @@
 import React from 'react';
-import Expo, { LinearGradient } from 'expo';
+import { LinearGradient } from 'expo';
 import { StyleSheet, StatusBar } from 'react-native';
 import CalculatorResponse from './components/CalculatorResponse';
 import CalculatorButtonsContainer from './components/CalculatorButtonsContainer';
@@ -194,4 +194,4 @@ const styles = StyleSheet.create({
   },
 });
 
-Expo.registerRootComponent(App);
+export default App;
