@@ -6,15 +6,9 @@
   </a>
 </p>
 
-<p align="center">
-  <img src="http://i.imgur.com/lomg4hK.png">
-</p>
+![image](http://i.imgur.com/lomg4hK.png)
 
-<p align='center'>
-  <a href="https://exp.host/@rmotr/react-native-calculator" target="_blank">
-    <img src="http://api.qrserver.com/v1/create-qr-code/?color=000000&amp;bgcolor=FFFFFF&amp;data=https%3A%2F%2Fexpo.io%2F%40rmotr%2Freact-native-calculator&amp;qzone=1&amp;margin=0&amp;size=400x400&amp;ecc=L" alt="qr code" />
-  </a>
-</p>
+![QR](https://user-images.githubusercontent.com/7065401/51684712-713a9e80-1fcb-11e9-8835-f11f1950187d.png)
 
 ---
 <p align="center">
