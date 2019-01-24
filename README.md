@@ -8,7 +8,9 @@
 
 ![image](http://i.imgur.com/lomg4hK.png)
 
-![QR](https://user-images.githubusercontent.com/7065401/51684712-713a9e80-1fcb-11e9-8835-f11f1950187d.png)
+![qr](https://user-images.githubusercontent.com/7065401/51691894-78b57400-1fda-11e9-80fa-d87d404c7d19.png)
+
+https://snack.expo.io/@rmotr/Y2FsY3
 
 ---
 <p align="center">
